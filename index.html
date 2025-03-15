@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎁 Amigo Secreto 🎉</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #5D3FD3;
+            color: #F5F5F5;
+        }
+        header {
+            background-color: #6A0DAD;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        header img {
+            max-width: 250px;
+            height: auto;
+            margin-right: 15px;
+        }
+        h1 {
+            font-size: 28px;
+            color: white;
+        }
+        input {
+            padding: 10px;
+            border: 2px solid #DDA0DD;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+            align-items: center;
+        }
+        button {
+            background-color: #DDA0DD;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+        }
+        button:hover {
+            transform: scale(1.1);
+            background-color: #BA55D3;
+        }
+        #mensajeError {
+            color: rgb(255, 255, 255);
+            font-weight: bold;
+            display: none;
+        }
+        #listaAmigos {
+            list-style: none;
+            padding: 0;
+        }
+        #listaAmigos li {
+            padding: 8px;
+            font-size: 18px;
+            background-color: #DDA0DD;
+            border-radius: 10px;
+            margin: 5px;
+            color: #333;
+        }
+        #resultado {
+            font-size: 22px;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #BA55D3;
+            display: none;
+            border-radius: 15px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="Confidencial.png" alt="Amigo Secreto">
+        <h1>🎁 Juego de Amigo Secreto 🎉</h1>
+    </header>
+    <input type="text" id="nombreInput" placeholder="Ingrese un nombre">
+    <button onclick="agregarAmigo()">➕ Agregar participante</button>
+    <p id="mensajeError">❌ Por favor, inserte un nombre válido.</p>
+    <ul id="listaAmigos"></ul>
+    <div class="button-container">
+        <button onclick="sortearAmigo()">🎁 Sortear Amigo 🎉</button>
+        <button onclick="resetearLista()">🔄 Nueva Lista</button>
+    </div>
+    <h2 id="resultado"></h2>
+
+    <script>
+        let amigos = [];
+
+        function agregarAmigo() {
+            let nombre = document.getElementById("nombreInput").value.trim();
+            let mensajeError = document.getElementById("mensajeError");
+            
+            if (nombre === "") {
+                mensajeError.style.display = "block";
+                return;
+            }
+            mensajeError.style.display = "none";
+            amigos.push(nombre);
+            document.getElementById("nombreInput").value = "";
+            actualizarLista();
+        }
+
+        function actualizarLista() {
+            let lista = document.getElementById("listaAmigos");
+            lista.innerHTML = "";
+            amigos.forEach((amigo) => {
+                let li = document.createElement("li");
+                li.textContent = "🎁 " + amigo;
+                lista.appendChild(li);
+            });
+        }
+
+        function sortearAmigo() {
+            if (amigos.length === 0) {
+                alert("Debe ingresar al menos un nombre para sortear.");
+                return;
+            }
+            let indiceAleatorio = Math.floor(Math.random() * amigos.length);
+            let amigoSecreto = amigos[indiceAleatorio];
+            let resultado = document.getElementById("resultado");
+            resultado.innerText = "🎁 El amigo secreto es: " + amigoSecreto;
+            resultado.style.display = "block";
+        }
+
+        function resetearLista() {
+            amigos = [];
+            document.getElementById("listaAmigos").innerHTML = "";
+            let resultado = document.getElementById("resultado");
+            resultado.innerText = "";
+            resultado.style.display = "none";
+        }
+    </script>
+</body>
+</html>
