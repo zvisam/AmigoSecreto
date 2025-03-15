@@ -13,6 +13,7 @@ Validaciones: Se muestra un mensaje de error si no se ingresa un nombre válido.
 Sortear Amigo: Se genera automáticamente con las parejas de Amigo Secreto.
 
 Nueva lista: Permite borrar todos los participantes y comenzar de nuevo.
+![image](https://github.com/user-attachments/assets/da8cb4b1-7b86-47d0-ab49-fe327d40c3b5)
 
 
 Instalación y ejecución
